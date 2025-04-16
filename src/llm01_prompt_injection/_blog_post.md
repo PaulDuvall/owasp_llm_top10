@@ -180,7 +180,7 @@ To use this framework, you need AWS access for secure secret storage. Here’s h
 
 2. **Set Up IAM Access with Best Practices** ([AWS IAM Console](https://console.aws.amazon.com/iam))
    - Avoid creating long-lived IAM users. Instead, use IAM roles with short-lived credentials.
-   - For developer access, use [AWS SSO](https://aws.amazon.com/single-sign-on/) or federated login for console and CLI access.
+   - For developer access, use [AWS IAM Identity Center](https://aws.amazon.com/iam/identity-center/) or federated login for console and CLI access.
    - Attach these permissions (minimum) to the role:
      - `AmazonSSMFullAccess` (Parameter Store)
      - `IAMFullAccess` (for OIDC/GitHub integration, if needed)
