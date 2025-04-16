@@ -83,7 +83,7 @@ To install all necessary dependencies, run:
 ./run.sh setup
 ```
 
-To use the framework with a real LLM, you need an OpenAI API key. You will be prompted to enter this key the first time you run a command that requires it (such as `./run.sh demo` or `./run.sh test`).
+To use the framework with a real LLM, you need an [OpenAI API key](https://platform.openai.com/settings/organization/api-keys). You will be prompted to enter this key the first time you run a command that requires it (such as `./run.sh demo` or `./run.sh test`).
 
 Your key is stored securely and only needs to be entered once per environment setup.
 
