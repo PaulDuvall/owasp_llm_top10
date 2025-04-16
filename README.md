@@ -241,4 +241,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 - [OWASP Top 10 for Large Language Model Applications](https://genai.owasp.org/llmrisk/llm01-prompt-injection/)
-- Contributors to the prompt injection research community
+- Contributors to the OWASP community

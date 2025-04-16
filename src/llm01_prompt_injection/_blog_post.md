@@ -74,6 +74,7 @@ To get started, first clone the repository:
 
 ```bash
 git clone https://github.com/PaulDuvall/owasp_llm_top10.git
+cd owasp_llm_top10
 ```
 
 To install all necessary dependencies, run:
@@ -86,35 +87,18 @@ To use the framework with a real LLM, you need an OpenAI API key. You will be pr
 
 Your key is stored securely and only needs to be entered once per environment setup.
 
-> **Note:** An AWS account is required to use this framework. AWS is used to securely store your API keys and credentials via Parameter Store. For setup instructions, see [Appendix: Setting Up AWS Access](#appendix-setting-up-aws-access).
+> **Note:** An AWS account is required to use this framework. AWS is used to securely store your API keys and credentials via Parameter Store. For setup instructions, see Appendix: Setting Up AWS Access.
 
-### Running the Demo/Test
+### Running the Demo and Tests
 
-To see prompt injection detection in action, use:
-
-```bash
-./run.sh demo
-```
-
-Or to run the full test suite:
+To see prompt injection detection in action or to run the full test suite, use:
 
 ```bash
-./run.sh test
+./run.sh demo    # Run the demo to see prompt injection detection in action
+./run.sh test    # Run comprehensive tests against your LLM implementation
 ```
 
 For additional details, advanced usage, and troubleshooting, see the [README](../../README.md).
-
-### Testing Prompt Injection
-
-One of the most powerful aspects of the framework is how easy it makes testing for prompt injection vulnerabilities. Using the `run.sh` script, you can quickly run comprehensive tests against your LLM implementations:
-
-```bash
-# Run the demo to see prompt injection detection in action
-./run.sh demo
-
-# Run comprehensive tests against your LLM implementation
-./run.sh test
-```
 
 The demo provides an interactive demonstration of prompt injection detection, showing:
 
