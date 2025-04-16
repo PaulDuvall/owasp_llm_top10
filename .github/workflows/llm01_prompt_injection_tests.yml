@@ -1,0 +1,121 @@
+name: LLM01 - Prompt Injection Tests
+
+on:
+  workflow_dispatch: # Only allow manual triggering
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write   # Required for OIDC
+      contents: read    # Required to checkout the repository
+    strategy:
+      matrix:
+        python-version: ['3.11']
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip install pytest pytest-cov
+        pip install awscli
+
+    - name: Check for required variables
+      run: |
+        # Check if AWS_ROLE_TO_ASSUME is set as a repository variable
+        # If not, provide clear instructions on how to set it up
+        if [ -z "${{ vars.AWS_ROLE_TO_ASSUME }}" ]; then
+          echo "::error::AWS_ROLE_TO_ASSUME variable is not set. Run the setup_oidc.sh script to configure OIDC authentication."
+          echo "::error::Command: ./scripts/setup_oidc.sh -o <github-org> -r <repo-name> -t <github-token>"
+          exit 1
+        fi
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        # Use the GitHub variable instead of hardcoding the role ARN
+        # This variable is set by the setup_oidc.sh script and follows the pattern:
+        # arn:aws:iam::<account-id>:role/github-oidc-role-<org>-<repo>
+        role-to-assume: ${{ vars.AWS_ROLE_TO_ASSUME }}
+        aws-region: us-east-1
+
+    # Validate IAM permissions to confirm we're using the correct role
+    - name: Validate IAM permissions
+      id: validate_permissions
+      run: |
+        echo "Validating IAM permissions..."
+        # Get caller identity to confirm which role we're using
+        caller_identity=$(aws sts get-caller-identity)
+        echo "$caller_identity"
+        
+        # Extract account ID
+        account_id=$(echo "$caller_identity" | grep -o '"Account": "[0-9]\+"' | cut -d '"' -f 4)
+        echo "AWS Account ID: $account_id"
+
+    - name: Get API keys from AWS Parameter Store
+      run: |
+        echo "Getting API keys from AWS Parameter Store"
+        export OPENAI_API_KEY=$(aws ssm get-parameter --name /owasp-llm-top10/OPENAI_API_KEY --with-decryption --query Parameter.Value --output text)
+        echo "::add-mask::$OPENAI_API_KEY"
+        echo "OPENAI_API_KEY=$OPENAI_API_KEY" >> $GITHUB_ENV
+        
+        # Uncomment if you add Anthropic support
+        # export ANTHROPIC_API_KEY=$(aws ssm get-parameter --name /owasp-llm-top10/ANTHROPIC_API_KEY --with-decryption --query Parameter.Value --output text)
+        # echo "::add-mask::$ANTHROPIC_API_KEY"
+        # echo "ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY" >> $GITHUB_ENV
+
+    - name: Run prompt injection tests
+      run: |
+        # Create test-results directory if it doesn't exist
+        mkdir -p test-results
+        
+        # Run tests and save results to JSON file
+        python -m pytest tests/llm01_prompt_injection/ \
+          --cov=src/llm01_prompt_injection \
+          --cov-report=xml \
+          --json-report \
+          --json-report-file=test-results/report-$(date +%Y%m%d%H%M%S).json
+
+    - name: Generate report
+      if: always()
+      run: |
+        # List test result files to verify they exist
+        echo "Test result files:"
+        ls -la test-results/
+        
+        # Generate report - add debug flag for more information
+        python -m scripts.generate_report --latest --format html --debug
+
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results
+        path: |
+          test-results/
+          coverage.xml
+
+    - name: Check for vulnerabilities
+      run: |
+        # Run vulnerability analysis with debug output
+        python -m scripts.analyze_vulnerabilities --debug
+        if [ $? -ne 0 ]; then
+          echo "VULNERABILITIES_DETECTED=true" >> $GITHUB_ENV
+        else
+          echo "VULNERABILITIES_DETECTED=false" >> $GITHUB_ENV
+        fi
+
+    - name: Fail if vulnerabilities detected
+      if: env.VULNERABILITIES_DETECTED == 'true'
+      run: |
+        echo "Prompt injection vulnerabilities detected! See test results for details."
+        exit 1

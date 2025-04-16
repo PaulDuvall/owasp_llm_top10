@@ -1,0 +1,16 @@
+# Core dependencies
+python-dotenv==1.0.0
+requests==2.32.0
+pydantic==2.5.2
+
+# Testing
+pytest==7.4.3
+pytest-cov==4.1.0
+pytest-json-report==1.5.0
+
+# LLM API clients
+openai==1.6.1
+
+# Reporting
+jinja2==3.1.6
+markdown==3.5.1
