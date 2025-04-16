@@ -178,10 +178,10 @@ To use this framework, you need AWS access for secure secret storage. Here’s h
 1. **Create an AWS Account**
    - [Sign up for AWS](https://aws.amazon.com/) if you don’t have an account.
 
-2. **Create an IAM User with Programmatic Access**
-   - Go to the AWS Console → IAM → Users → Add users.
-   - Enable *programmatic access*.
-   - Attach these permissions (minimum):
+2. **Set Up IAM Access with Best Practices**
+   - Avoid creating long-lived IAM users. Instead, use IAM roles with short-lived credentials.
+   - For developer access, use [AWS SSO](https://aws.amazon.com/single-sign-on/) or federated login for console and CLI access.
+   - Attach these permissions (minimum) to the role:
      - `AmazonSSMFullAccess` (Parameter Store)
      - `IAMFullAccess` (for OIDC/GitHub integration, if needed)
      - `AWSCloudFormationFullAccess` (for stack setup)
