@@ -225,8 +225,6 @@ To add new test scenarios:
 2. Implement your test case following the existing patterns
 3. Update the documentation to include your new test scenario
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
-
 ## Interpreting Results
 
 Test results are available in the GitHub Actions logs and as artifacts. Each test run produces:
