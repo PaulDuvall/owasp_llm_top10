@@ -147,7 +147,7 @@ Based on the OWASP Top 10 for LLM Applications, here are the most effective stra
 
 5. **Least Privilege Design**: Design your LLM applications with the principle of least privilege, limiting what actions the LLM can take based on user inputs.
 
-6. **Regular Security Testing**: Incorporate prompt injection testing into your security testing pipeline, using frameworks like this one to continuously validate your defenses.
+6. **Regular Security Testing**: Incorporate prompt injection testing into your security testing pipeline, using frameworks, services, and tools to continuously validate your defenses.
 
 7. **Human Review**: For high-risk applications, implement human review of LLM outputs before they trigger sensitive actions.
 

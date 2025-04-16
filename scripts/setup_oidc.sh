@@ -72,12 +72,12 @@ done
 
 # Retrieve GitHub token from Parameter Store if not set
 if [[ -z "$GITHUB_TOKEN" ]]; then
-  GITHUB_TOKEN=$(aws ssm get-parameter --name "/owasp-llm-top10/GITHUB_TOKEN" --with-decryption --query "Parameter.Value" --output text)
+  GITHUB_TOKEN=$(aws ssm get-parameter --name "/owasp-llm-top10/GITHUB_TOKEN" --with-decryption --query "Parameter.Value" --output text 2>/dev/null || echo "")
 fi
 
 # Validate required parameters
 if [[ -z "$GITHUB_TOKEN" ]]; then
-  echo -e "${RED}Error: GitHub token is required${NC}"
+  echo -e "${RED}Error: GitHub token is required.\n${YELLOW}Please run './run.sh set-github-token' to store your token in AWS Parameter Store, or provide it with --github-token.${NC}"
   usage
 fi
 

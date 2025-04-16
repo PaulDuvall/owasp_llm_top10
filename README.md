@@ -31,7 +31,7 @@ Prompt injection attacks occur when malicious users craft inputs that manipulate
 
 For enhanced security, this project uses AWS Parameter Store to manage your GitHub Personal Access Token (PAT) for OIDC setup. This keeps your token out of shell history, process lists, and your codebase.
 
-#### 1. Store Your GitHub Token
+#### 1. Store Your GitHub Token (REQUIRED FIRST STEP)
 Run the following command and enter your token when prompted:
 
 ```bash
@@ -40,7 +40,7 @@ Run the following command and enter your token when prompted:
 This will securely store your GitHub token in AWS Parameter Store at `/owasp-llm-top10/GITHUB_TOKEN` as a SecureString.
 
 #### 2. Run the OIDC Setup Script
-You do **not** need to pass your token as an argument or environment variable. The setup script will automatically retrieve it from Parameter Store:
+After setting your token, run the OIDC setup script. The script will automatically retrieve your token from Parameter Store:
 
 ```bash
 ./scripts/setup_oidc.sh --region us-east-1 --github-org YOUR_ORG --repo-name YOUR_REPO
