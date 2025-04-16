@@ -178,7 +178,7 @@ To use this framework, you need AWS access for secure secret storage. Here’s h
 1. **Create an AWS Account**
    - [Sign up for AWS](https://aws.amazon.com/) if you don’t have an account.
 
-2. **Set Up IAM Access with Best Practices**
+2. **Set Up IAM Access with Best Practices** ([AWS IAM Console](https://console.aws.amazon.com/iam))
    - Avoid creating long-lived IAM users. Instead, use IAM roles with short-lived credentials.
    - For developer access, use [AWS SSO](https://aws.amazon.com/single-sign-on/) or federated login for console and CLI access.
    - Attach these permissions (minimum) to the role:
@@ -188,21 +188,29 @@ To use this framework, you need AWS access for secure secret storage. Here’s h
      - Or use a custom least-privilege policy.
 
 3. **Configure AWS CLI Locally**
-   - Install the AWS CLI:
-     ```bash
-     pip install awscli
-     ```
-   - Configure credentials:
-     ```bash
-     aws configure
-     ```
-     Enter your Access Key ID, Secret Access Key, default region (e.g., `us-east-1`), and output format (e.g., `json`).
+
+Install the AWS CLI:
+
+```bash
+pip install awscli
+```
+
+Configure credentials:
+
+```bash
+aws configure
+```
+
+Enter your Access Key ID, Secret Access Key, default region (e.g., `us-east-1`), and output format (e.g., `json`).
 
 4. **Verify Your Setup**
-   - Test your credentials:
-     ```bash
-     aws sts get-caller-identity
-     ```
-   - You should see your AWS account and user info.
+
+Test your credentials:
+
+```bash
+aws sts get-caller-identity
+```
+
+You should see your AWS account and user info.
 
 Once complete, you’ll be able to run the framework’s scripts and securely store/retrieve secrets via AWS Parameter Store.
