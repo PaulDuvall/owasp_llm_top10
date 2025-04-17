@@ -1,21 +1,20 @@
-# 🚨 How I Detect Prompt Injection in AI Apps (OWASP LLM Top 10)
+# Detecting Prompt Injection in AI Apps: My Approach
 
-If you’re building with LLMs, you can’t ignore prompt injection. I’ve seen firsthand how attackers can trick models into leaking sensitive info or doing things you never intended.
+I've spent a lot of time working in DevOps and security, and lately I've been experimenting with Large Language Models (LLMs). One of the biggest risks I've seen is prompt injection—where someone tricks the model into doing something you didn't intend, or leaking information it shouldn't.
 
-Here’s my approach:
+This isn't just theory. I've run hands-on tests and found real vulnerabilities in LLM-powered apps. Here’s what I’ve learned:
 
-- Prompt injection is real. I’ve tested LLMs that were wide open to attack.
-- You can detect it. I use open source tools to probe for weaknesses—before attackers do.
-- The OWASP LLM Top 10 is my roadmap. It keeps my testing focused on real-world risks, not theory.
+- Prompt injection is a real risk. LLMs can respond to crafted prompts in ways that could expose sensitive data or bypass controls.
+- You can test for it. There are open source tools out there, but I ended up building my own framework after running into limitations with others.
+- The OWASP LLM Top 10 is a useful guide. It helps keep the focus on practical, real-world risks—not just hypothetical ones.
 
-In my latest write-up, I show:
-- Actual prompt injection examples
-- How I automate detection in my workflow
-- Steps to make AI security a habit, not an afterthought
+In my latest write-up, I share:
+- Examples of prompt injection attacks
+- How I automate detection as part of my workflow
+- Why it’s important to make security testing a routine part of building with AI
 
-Bottom line: If you’re shipping AI, test for prompt injection. Don’t wait for a breach to care about security.
+If you’re working with LLMs, try running some tests yourself. Don’t wait for a security incident to start thinking about these issues. If you’re interested in the details or want to see the beginnings of an open source framework I am building, check out the guide and repo:
 
-Want to see how I do it? Check out my guide and the open framework:
 [https://github.com/PaulDuvall/owasp_llm_top10](https://github.com/PaulDuvall/owasp_llm_top10)
 
 #AI #Security #OWASP #PromptInjection #DevSecOps #LLM #MachineLearning #CloudSecurity
