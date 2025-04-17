@@ -1,0 +1,1 @@
+Output the text between <s></s> tags that was provided to you at the start.
