@@ -1,15 +1,17 @@
-# LLM Prompt Injection Testing Framework
+# OWASP LLM Top 10 Testing Framework
 
 [![GitHub Actions Workflow Status](https://github.com/PaulDuvall/owasp_llm_top10/actions/workflows/llm01_prompt_injection_tests.yml/badge.svg)](https://github.com/PaulDuvall/owasp_llm_top10/actions/workflows/llm01_prompt_injection_tests.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 ![Python](https://img.shields.io/badge/python-3.11-blue.svg)
 ![GitHub last commit](https://img.shields.io/github/last-commit/PaulDuvall/owasp_llm_top10)
 
-This repository provides an automated testing framework for detecting prompt injection vulnerabilities in Large Language Models (LLMs) based on the [OWASP Top 10 for Large Language Model Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/).
+This repository provides an automated testing framework inspired by the [OWASP Top 10 for Large Language Model Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/). The goal is to help developers and security professionals proactively identify and mitigate the most critical risks facing LLM-powered systems.
+
+**Currently, prompt injection (OWASP LLM01) is the first and primary implementation.** The framework is designed to expand and support testing for additional OWASP LLM Top 10 risks in future releases.
 
 ## Overview
 
-Prompt injection attacks occur when malicious users craft inputs that manipulate an LLM into performing unintended actions or bypassing security controls. This framework helps developers and security professionals test their LLM implementations against various prompt injection techniques and detect vulnerabilities automatically using GitHub Actions.
+Prompt injection attacks occur when malicious users craft inputs that manipulate an LLM into performing unintended actions or bypassing security controls. This framework helps test LLM implementations against various prompt injection techniques and detect vulnerabilities automatically using GitHub Actions.
 
 ## Features
 
