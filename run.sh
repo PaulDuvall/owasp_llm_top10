@@ -42,22 +42,26 @@ check_aws_cli() {
 # Check AWS credentials and region
 check_aws_credentials() {
     print_section "Checking AWS credentials"
-    
+    echo "DEBUG: Entered check_aws_credentials"
     # Check if AWS credentials are configured
     if ! aws sts get-caller-identity &> /dev/null; then
+        echo "DEBUG: aws sts get-caller-identity failed"
         print_error "AWS credentials not configured. Please run 'aws configure' first."
     else
+        echo "DEBUG: aws sts get-caller-identity succeeded"
         print_success "AWS credentials are configured"
     fi
     
     # Get current AWS region
     AWS_REGION=$(aws configure get region)
+    echo "DEBUG: AWS_REGION after aws configure get region: $AWS_REGION"
     if [ -z "$AWS_REGION" ]; then
         print_warning "AWS region not set. Using default region: us-east-1"
         AWS_REGION="us-east-1"
     else
         print_success "Using AWS region: $AWS_REGION"
     fi
+    echo "DEBUG: Exiting check_aws_credentials"
 }
 
 # Check if parameter exists in AWS Parameter Store
@@ -116,15 +120,16 @@ check_parameter() {
 # Check required parameters
 check_required_parameters() {
     print_section "Checking required parameters"
-    
+    echo "DEBUG: Entered check_required_parameters"
     # Check AWS credentials and region first
     check_aws_credentials
-    
+    echo "DEBUG: After check_aws_credentials in check_required_parameters"
     # Check OpenAI API key - use OPENAI_API_KEY as the environment variable name
     check_parameter "/owasp-llm-top10/OPENAI_API_KEY" "OpenAI API key is required for testing LLM vulnerabilities" "true" "OPENAI_API_KEY"
     
     # Add more parameters as needed
     # check_parameter "/owasp-llm-top10/OTHER_PARAM" "Description of parameter" "false" "ENV_VAR_NAME"
+    echo "DEBUG: Exiting check_required_parameters"
 }
 
 check_python_version() {
