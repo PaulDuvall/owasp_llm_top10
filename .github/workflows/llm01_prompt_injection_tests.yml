@@ -63,6 +63,16 @@ jobs:
     - name: Run prompt injection demo (real mode)
       run: ./run.sh demo
 
+    - name: Run prompt injection tests (pytest, real mode)
+      if: always()
+      run: |
+        mkdir -p test-results
+        python -m pytest tests/llm01_prompt_injection/ \
+          --cov=src/llm01_prompt_injection \
+          --cov-report=xml \
+          --json-report \
+          --json-report-file=test-results/report-real-$(date +%Y%m%d%H%M%S).json
+
     - name: Ensure all Python dependencies are installed before real mode report
       if: always()
       run: |
@@ -84,6 +94,16 @@ jobs:
     # --------- SIMULATED MODE ---------
     - name: Run prompt injection demo (simulation mode)
       run: ./run.sh demo --simulate-vulnerable
+
+    - name: Run prompt injection tests (pytest, simulated mode)
+      if: always()
+      run: |
+        mkdir -p test-results
+        python -m pytest tests/llm01_prompt_injection/ \
+          --cov=src/llm01_prompt_injection \
+          --cov-report=xml \
+          --json-report \
+          --json-report-file=test-results/report-simulated-$(date +%Y%m%d%H%M%S).json
 
     - name: Ensure all Python dependencies are installed before simulated mode report
       if: always()
