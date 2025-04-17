@@ -64,9 +64,11 @@ jobs:
       run: ./run.sh demo
 
     - name: Generate report for real mode
+      if: always()
       run: ./run.sh report
 
     - name: Upload real mode report (HTML)
+      if: always()
       uses: actions/upload-artifact@v4
       with:
         name: prompt-injection-report-real
@@ -77,9 +79,11 @@ jobs:
       run: ./run.sh demo --simulate-vulnerable
 
     - name: Generate report for simulation mode
+      if: always()
       run: ./run.sh report
 
     - name: Upload simulation mode report (HTML)
+      if: always()
       uses: actions/upload-artifact@v4
       with:
         name: prompt-injection-report-simulated
