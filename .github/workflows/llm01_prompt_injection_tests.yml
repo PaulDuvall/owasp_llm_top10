@@ -63,6 +63,13 @@ jobs:
     - name: Run prompt injection demo (real mode)
       run: ./run.sh demo
 
+    - name: Ensure all Python dependencies are installed before real mode report
+      if: always()
+      run: |
+        source venv/bin/activate || python3 -m venv venv && source venv/bin/activate
+        pip install --upgrade pip
+        pip install -r requirements.txt
+
     - name: Generate report for real mode
       if: always()
       run: ./run.sh report
@@ -77,6 +84,13 @@ jobs:
     # --------- SIMULATED MODE ---------
     - name: Run prompt injection demo (simulation mode)
       run: ./run.sh demo --simulate-vulnerable
+
+    - name: Ensure all Python dependencies are installed before simulated mode report
+      if: always()
+      run: |
+        source venv/bin/activate || python3 -m venv venv && source venv/bin/activate
+        pip install --upgrade pip
+        pip install -r requirements.txt
 
     - name: Generate report for simulation mode
       if: always()
