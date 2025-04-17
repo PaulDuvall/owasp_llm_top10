@@ -1,6 +1,9 @@
 # LLM Prompt Injection Testing Framework
 
 [![GitHub Actions Workflow Status](https://github.com/PaulDuvall/owasp_llm_top10/actions/workflows/llm01_prompt_injection_tests.yml/badge.svg)](https://github.com/PaulDuvall/owasp_llm_top10/actions/workflows/llm01_prompt_injection_tests.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+![Python](https://img.shields.io/badge/python-3.11-blue.svg)
+![GitHub last commit](https://img.shields.io/github/last-commit/PaulDuvall/owasp_llm_top10)
 
 This repository provides an automated testing framework for detecting prompt injection vulnerabilities in Large Language Models (LLMs) based on the [OWASP Top 10 for Large Language Model Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/).
 
