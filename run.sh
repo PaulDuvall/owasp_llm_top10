@@ -254,13 +254,19 @@ run_specific_test() {
 
 run_demo() {
     print_section "Running prompt injection demo"
-    
+
     # Check required parameters first
     check_required_parameters
-    
+
+    echo "DEBUG: After check_required_parameters in run_demo"
+    set -x
+    env
+    ls -la
+    pwd
+
     # Run the direct API demo script
     python3 scripts/direct_api_demo.py "${ARGS[@]:1}"
-    
+
     # If scan results JSON exists, generate reports
     SCAN_JSON="test-results/prompt_injection_test_results_latest.json"
     if [ -f "$SCAN_JSON" ]; then
@@ -269,7 +275,7 @@ run_demo() {
     else
         echo "Warning: Scan results JSON ($SCAN_JSON) not found. Skipping report generation."
     fi
-    
+
     if [ $? -eq 0 ]; then
         print_success "Demo completed successfully"
     else
