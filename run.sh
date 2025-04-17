@@ -259,7 +259,16 @@ run_demo() {
     check_required_parameters
     
     # Run the direct API demo script
-    python scripts/direct_api_demo.py
+    python3 scripts/direct_api_demo.py "${ARGS[@]:1}"
+    
+    # If scan results JSON exists, generate reports
+    SCAN_JSON="test-results/prompt_injection_test_results_latest.json"
+    if [ -f "$SCAN_JSON" ]; then
+        echo "Generating formatted prompt injection reports..."
+        python3 scripts/generate_prompt_injection_report.py "$SCAN_JSON"
+    else
+        echo "Warning: Scan results JSON ($SCAN_JSON) not found. Skipping report generation."
+    fi
     
     if [ $? -eq 0 ]; then
         print_success "Demo completed successfully"
@@ -298,6 +307,9 @@ show_help() {
 }
 
 # Main script execution
+
+# Capture all arguments at the top
+ARGS=("$@")
 
 # Make script executable if it's not already
 if [ ! -x "$0" ]; then
@@ -341,7 +353,6 @@ case $command in
         fi
         ;;
     demo)
-        setup_venv
         run_demo
         ;;
     report)

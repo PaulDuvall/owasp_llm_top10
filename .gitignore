@@ -138,3 +138,6 @@ Thumbs.db
 *.key
 secrets.json
 config.local.json
+
+# Ignore generated reports
+/report/reports/
