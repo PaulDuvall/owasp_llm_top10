@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 ![Python](https://img.shields.io/badge/python-3.11-blue.svg)
 ![GitHub last commit](https://img.shields.io/github/last-commit/PaulDuvall/owasp_llm_top10)
-![Page Views](https://komarev.com/ghpvc/?username=PaulDuvall&repo=owasp_llm_top10)
+![Page Views](https://komarev.com/ghpvc/?username=PaulDuvall&repo=owasp_llm_top10&label=Page%20Views)
 
 This repository provides an automated testing framework inspired by the [OWASP Top 10 for Large Language Model Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/). The goal is to help developers and security professionals proactively identify and mitigate the most critical risks facing LLM-powered systems.
 
