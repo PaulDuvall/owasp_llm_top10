@@ -4,7 +4,7 @@
 
 As someone who's spent many years in the DevOps and security automation space, I've witnessed numerous shifts in technology that have changed how we build and secure software. But few innovations have been as transformative—and potentially risky—as the integration of Large Language Models (LLMs) into our systems and applications.
 
-Today, I want to explore what I believe is one of the most critical security challenges we face in this new AI-powered landscape: prompt injection attacks. This isn't just theoretical—it's a real vulnerability that I have been actively researching, testing, and mitigating through by leveraging the work of the OWASP LLM Top 10 project.
+Today, I want to explore what I believe is one of the most critical security challenges we face in this new AI-powered landscape: prompt injection attacks. This isn't just theoretical—it's a real vulnerability that I have been actively researching, testing, and working to mitigate by building on the foundation provided by the OWASP LLM Top 10 project.
 
 ### The Rising Stakes of LLM Security
 
