@@ -1,20 +1,17 @@
 # Detecting Prompt Injection in AI Apps: My Approach
 
-I've spent a lot of time working in DevOps and security, and lately I've been experimenting with Large Language Models (LLMs). One of the biggest risks I've seen is prompt injection—where someone tricks the model into doing something you didn't intend, or leaking information it shouldn't.
+According to OWASP, prompt injection is one of the top vulnerabilities affecting LLMs—models can be tricked into leaking info or doing things you didn’t intend. This isn’t just theory: I’ve run hands-on tests and seen real vulnerabilities.
 
-This isn't just theory. I've run hands-on tests and found real vulnerabilities in LLM-powered apps. Here’s what I’ve learned:
+A few takeaways:
+- Prompt injection is real and testable. LLMs can be probed with crafted prompts to expose weaknesses.
+- I tried open source tools, but hit practical issues—so I built my own framework. (Your mileage may vary.)
+- The OWASP LLM Top 10 keeps me focused on real-world risks.
 
-- Prompt injection is a real risk. LLMs can respond to crafted prompts in ways that could expose sensitive data or bypass controls.
-- You can test for it. There are open source tools out there, but I ended up building my own framework after running into limitations with others.
-- The OWASP LLM Top 10 is a useful guide. It helps keep the focus on practical, real-world risks—not just hypothetical ones.
+My workflow automates detection, generates reports (Markdown, HTML, JSON), and makes it easy to review findings. Right now, the focus is prompt injection, but I plan to cover more LLM risks soon.
 
-In my latest write-up, I share:
-- Examples of prompt injection attacks
-- How I automate detection as part of my workflow
-- Why it’s important to make security testing a routine part of building with AI
+If you’re building with LLMs, try testing for prompt injection early. Security works best when you automatically build it into the AI lifecycle.
 
-If you’re working with LLMs, try running some tests yourself. Don’t wait for a security incident to start thinking about these issues. If you’re interested in the details or want to see the beginnings of an open source framework I am building, check out the guide and repo:
-
+Details and code here:
 [https://github.com/PaulDuvall/owasp_llm_top10](https://github.com/PaulDuvall/owasp_llm_top10)
 
 #AI #Security #OWASP #PromptInjection #DevSecOps #LLM #MachineLearning #CloudSecurity
