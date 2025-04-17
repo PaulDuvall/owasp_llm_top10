@@ -6,50 +6,6 @@ As someone who's spent many years in the DevOps and security automation space, I
 
 Today, I want to explore what I believe is one of the most critical security challenges we face in this new AI-powered landscape: prompt injection attacks. This isn't just theoretical—it's a real vulnerability that I have been actively researching, testing, and mitigating through by leveraging the work of the OWASP LLM Top 10 project.
 
-### Recent Improvements (April 2025)
-
-#### Robust Automation, Security, and Debugging Enhancements
-
-Since commit `c808c7f` the framework has undergone significant improvements to reliability, security, and developer experience:
-
-- **Direct OpenAI API Demo:**
-  - Replaced the OpenAI Python package in the demo with a direct API calling script (`direct_api_demo.py`) using the `requests` library. This avoids compatibility issues and demonstrates prompt injection detection without SDK bugs.
-  - The demo now covers system prompt extraction, pattern matching, behavioral analysis, and detailed reporting with confidence scores.
-
-- **Improved AWS Credential Handling:**
-  - The `run.sh` script now robustly checks for AWS credentials and region, with granular debug output to help diagnose CI failures.
-  - Region fetching is now resilient to missing or unset config, preventing abrupt script exits in CI/CD.
-
-- **CI/CD Workflow Debugging:**
-  - Added debug output and error tracing to the workflow and shell scripts, including environment inspection, directory listings, and shell tracing.
-  - Ensured that all required dependencies are installed and that test artifacts are generated before report steps.
-
-- **OpenAI Client Compatibility Fixes:**
-  - The `OpenAIClient.send_prompt` method was fixed to return a string instead of a dictionary, resolving issues with the demo script and avoiding deprecated parameters.
-
-- **Memory & Traceability:**
-  - The project now leverages persistent memory and traceability matrices to link user stories, implementation, and tests, following best practices for incremental, test-driven development.
-
-- **Security & Usability:**
-  - Sensitive keys are managed via AWS Parameter Store, never hardcoded.
-  - The framework continues to emphasize secure-by-default patterns, least privilege, and automated detection of LLM vulnerabilities.
-
-#### How to Run the Latest Demo
-
-```bash
-./run.sh setup     # Install dependencies
-./run.sh demo      # Run the robust, debug-enabled prompt injection demo
-```
-
-- If running in CI, check debug output for any failures after AWS credential and region checks.
-- For troubleshooting, examine the logs for `DEBUG:` lines—these will pinpoint any configuration or environment issues.
-
-#### See Also
-- [requirements.txt](../../requirements.txt) for dependency changes
-- [run.sh](../../run.sh) for automation and debug improvements
-- [direct_api_demo.py](../../scripts/direct_api_demo.py) for the new demo implementation
-- [llm_client.py](../../src/llm01_prompt_injection/llm_client.py) for OpenAI client compatibility fixes
-
 ### The Rising Stakes of LLM Security
 
 LLMs are rapidly becoming embedded in critical business systems—from customer service chatbots to code generation tools, content creation platforms, and even systems making financial or healthcare recommendations. With this integration comes a new attack surface that traditional security approaches aren't designed to address.
