@@ -52,6 +52,14 @@ jobs:
         account_id=$(echo "$caller_identity" | grep -o '"Account": "[0-9]\+"' | cut -d '"' -f 4)
         echo "AWS Account ID: $account_id"
 
+    - name: Debug after AWS credentials check
+      if: always()
+      run: |
+        echo "DEBUG: After AWS credentials check"
+        set -x
+        ls -la
+        env
+
     - name: Get API keys from AWS Parameter Store
       run: |
         echo "Getting API keys from AWS Parameter Store"
