@@ -1,8 +1,8 @@
 # LLM Prompt Injection Testing Framework
 
-[![GitHub Actions Workflow Status](https://github.com/yourusername/owasp_llm_top10/actions/workflows/llm01_prompt_injection_tests.yml/badge.svg)](https://github.com/yourusername/owasp_llm_top10/actions/workflows/llm01_prompt_injection_tests.yml)
+[![GitHub Actions Workflow Status](https://github.com/PaulDuvall/owasp_llm_top10/actions/workflows/llm01_prompt_injection_tests.yml/badge.svg)](https://github.com/PaulDuvall/owasp_llm_top10/actions/workflows/llm01_prompt_injection_tests.yml)
 
-This repository provides an automated testing framework for detecting prompt injection vulnerabilities in Large Language Models (LLMs) based on the [OWASP Top 10 for Large Language Model Applications](https://genai.owasp.org/llmrisk/llm01-prompt-injection/).
+This repository provides an automated testing framework for detecting prompt injection vulnerabilities in Large Language Models (LLMs) based on the [OWASP Top 10 for Large Language Model Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/).
 
 ## Overview
 
@@ -84,7 +84,7 @@ Parameter Store is recommended for the best security and automation, but all thr
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/owasp_llm_top10.git
+   git clone https://github.com/PaulDuvall/owasp_llm_top10.git
    cd owasp_llm_top10
    ```
 

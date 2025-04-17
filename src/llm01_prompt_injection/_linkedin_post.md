@@ -7,7 +7,7 @@ A few takeaways:
 - While I'm still experimenting, I tried open source tools, but hit practical issues—so I built my own tool. (Your mileage may vary.)
 - The OWASP LLM Top 10 keeps me focused on real-world risks.
 
-My workflow automates detection, generates reports (Markdown, HTML, JSON), and makes it easy to review findings. Right now, the focus is prompt injection, but I plan to cover more LLM risks soon.
+The tool automates detection, generates reports (Markdown, HTML, JSON), and makes it easy to review findings. Right now, the focus is prompt injection, but I plan to cover more LLM risks soon.
 
 If you’re building with LLMs, try testing for prompt injection early. Security works best when you automatically build it into the AI lifecycle.
 
