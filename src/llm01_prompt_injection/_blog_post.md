@@ -198,7 +198,7 @@ The AI revolution is well underway, bringing unprecedented capabilities to our a
 
 ### Resources
 
-The following open source tools might help you assess prompt injection and related LLM risks. I had issues with some of them, so I built this framework instead. In theory, they can be integrated into CI/CD pipelines for automated testing and monitoring:
+A number of open source tools aim to help assess prompt injection and related LLM risks, and in principle, many can be integrated into CI/CD pipelines for automated testing and monitoring. Currently, this framework focuses specifically on prompt injection detection; after encountering practical limitations with some existing solutions, I started building it to address those gaps directly. The plan is to extend support to other LLM security risks from the OWASP Top 10 in future releases:
 
 - [LLM-Canary](https://github.com/LLM-Canary/LLM-Canary): A framework for red-teaming and evaluating LLM security, including prompt injection detection. **Note:** At the time of writing, LLM-Canary was not available via PyPI, and required manual installation steps.
 - [llm-guard](https://github.com/protectai/llm-guard): Provides runtime protection for LLM applications with prompt/response validation, filtering, and security policy enforcement. **Note:** I encountered technical issues running llm-guard from the CLI, which limited its usefulness in automated workflows.
