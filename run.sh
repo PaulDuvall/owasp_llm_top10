@@ -52,9 +52,12 @@ check_aws_credentials() {
         print_success "AWS credentials are configured"
     fi
     
-    # Get current AWS region
-    AWS_REGION=$(aws configure get region)
-    echo "DEBUG: AWS_REGION after aws configure get region: $AWS_REGION"
+    # Get current AWS region (robust to missing config)
+    set +e
+    AWS_REGION=$(aws configure get region 2>/dev/null)
+    REGION_STATUS=$?
+    set -e
+    echo "DEBUG: AWS_REGION after aws configure get region: $AWS_REGION (status: $REGION_STATUS)"
     if [ -z "$AWS_REGION" ]; then
         print_warning "AWS region not set. Using default region: us-east-1"
         AWS_REGION="us-east-1"
