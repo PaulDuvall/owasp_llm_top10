@@ -169,7 +169,14 @@ Most importantly, make security testing an integral part of your AI development 
 
 The AI revolution is well underway, bringing unprecedented capabilities to our applications. Let's ensure we're building this new frontier on a secure foundation.
 
----
+### Resources
+
+The following open source tools can help you assess prompt injection and related LLM risks. Many can be integrated into CI/CD pipelines for automated testing and monitoring:
+
+- [LLM-Canary](https://github.com/LLM-Canary/LLM-Canary): A framework for red-teaming and evaluating LLM security, including prompt injection detection and reporting.
+- [LLMFuzzer](https://github.com/mnns/LLMFuzzer): A tool for fuzz testing LLMs to uncover vulnerabilities through automated input mutation and attack simulation.
+- [llm-guard](https://github.com/protectai/llm-guard): Provides runtime protection for LLM applications with prompt/response validation, filtering, and security policy enforcement.
+- [rebuff](https://github.com/protectai/rebuff): A runtime firewall and monitoring solution for LLMs, designed to detect and block prompt injection and other attacks in production environments.
 
 ## Appendix: Setting Up AWS Access
 
