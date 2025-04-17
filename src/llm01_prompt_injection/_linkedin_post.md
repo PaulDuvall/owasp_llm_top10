@@ -4,7 +4,7 @@ According to OWASP, prompt injection is one of the top vulnerabilities affecting
 
 A few takeaways:
 - Prompt injection is real and testable. LLMs can be probed with crafted prompts to expose weaknesses.
-- I tried open source tools, but hit practical issues—so I built my own framework. (Your mileage may vary.)
+- While I'm still experimenting, I tried open source tools, but hit practical issues—so I built my own tool. (Your mileage may vary.)
 - The OWASP LLM Top 10 keeps me focused on real-world risks.
 
 My workflow automates detection, generates reports (Markdown, HTML, JSON), and makes it easy to review findings. Right now, the focus is prompt injection, but I plan to cover more LLM risks soon.
