@@ -188,7 +188,7 @@ That's why I started building this testing framework—to bridge the gap between
 
 ### Call to Action: Start Testing Today
 
-If you're building applications that incorporate LLMs, it's strongly recommended to start testing for prompt injection vulnerabilities today. Clone the repository at [https://github.com/PaulDuvall/owasp_llm_top10.git](https://github.com/PaulDuvall/owasp_llm_top10.git) and run the demo to see how prompt injection detection works in practice.
+If you're building applications that incorporate LLMs, it's strongly recommended to start testing for prompt injection vulnerabilities today.
 
 Remember that prompt injection is just one of ten critical risks identified in the OWASP Top 10 for LLMs. Take the time to understand all of these risks and how they might impact your specific implementation.
 
