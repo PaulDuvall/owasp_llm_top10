@@ -5,8 +5,8 @@ A few takeaways:
 - While I'm still experimenting, I tried open source tools, but hit practical issues—so I built my own tool. (Your mileage may vary.)
 - The OWASP LLM Top 10 keeps me focused on real-world risks.
 
-WHY THIS IS ACCESSIBLE:
-- You can run all tests and demos in a fully simulated mode — no AWS account or OpenAI key required.
+Why this is accessible:
+- You can run all tests and demos in a fully simulated mode—no AWS account or OpenAI key required.
 - This makes it easy for anyone to explore detection and reporting features, even in restricted environments or for quick demos.
 - When you want to test against a real LLM, secure AWS-based secret management is supported via AWS Parameter Store.
 
@@ -14,7 +14,7 @@ The tool automates detection, generates reports (Markdown, HTML, JSON), and make
 
 If you’re building with LLMs, try testing for prompt injection early. Security works best when you automatically build it into the AI lifecycle.
 
-TRY IT OUT:
+Try it out:
 Simulated mode (no setup):
 ./run.sh demo --simulate-vulnerable
 ./run.sh test --simulate-vulnerable
