@@ -263,17 +263,23 @@ run_specific_test() {
 run_demo() {
     print_section "Running prompt injection demo"
 
-    # Check required parameters first
-    check_required_parameters
+    # If running in simulated mode, skip AWS and parameter checks
+    if [[ "$1" == "--simulate-vulnerable" ]]; then
+        echo "[INFO] Simulated mode: Skipping AWS and parameter checks."
+        python3 scripts/direct_api_demo.py "$1"
+    else
+        # Check required parameters first
+        check_required_parameters
 
-    echo "DEBUG: After check_required_parameters in run_demo"
-    set -x
-    env
-    ls -la
-    pwd
+        echo "DEBUG: After check_required_parameters in run_demo"
+        set -x
+        env
+        ls -la
+        pwd
 
-    # Run the direct API demo script
-    python3 scripts/direct_api_demo.py "${ARGS[@]:1}"
+        # Run the direct API demo script
+        python3 scripts/direct_api_demo.py "${ARGS[@]:1}"
+    fi
 
     # If scan results JSON exists, generate reports
     SCAN_JSON="test-results/prompt_injection_test_results_latest.json"
