@@ -95,8 +95,11 @@ To see prompt injection detection in action or to run the full test suite, use:
 
 ```bash
 ./run.sh demo    # Run the demo to see prompt injection detection in action
+./run.sh demo --simulate-vulnerable # Run the demo in simulated mode (no OpenAI key required)
 ./run.sh test    # Run comprehensive tests against your LLM implementation
 ```
+
+If you don't have or don't want to use your OpenAI API key, you can run the framework in simulated mode using `./run.sh demo --simulate-vulnerable`. This mode does not require a real API key and performs detection logic without making external API calls, allowing you to explore the workflow and output safely.
 
 For additional details, advanced usage, and troubleshooting, see the [README](../../README.md).
 

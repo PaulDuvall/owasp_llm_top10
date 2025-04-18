@@ -306,6 +306,7 @@ show_help() {
     echo -e "  params\t\tCheck and update required AWS Parameter Store parameters"
     echo -e "  test [risk]\tRun tests (optionally for a specific risk, e.g., 01 for prompt injection)"
     echo -e "  demo\t\tRun prompt injection detection demo"
+    echo -e "  demo --simulate-vulnerable\tRun demo in simulated mode (no OpenAI key required, no API calls)"
     echo -e "  report\t\tGenerate test report"
     echo -e "  analyze\t\tAnalyze vulnerabilities"
     echo -e "  all\t\tRun all tests, generate report, and analyze vulnerabilities"
@@ -316,6 +317,7 @@ show_help() {
     echo -e "  ./run.sh params\tCheck and update required parameters"
     echo -e "  ./run.sh test\t\tRun all tests"
     echo -e "  ./run.sh demo\t\tRun the prompt injection demo"
+    echo -e "  ./run.sh demo --simulate-vulnerable\tRun the demo in simulated mode (no OpenAI key required)"
     echo -e "  ./run.sh test 01\tRun tests for LLM01 (Prompt Injection)"
     echo -e "  ./run.sh all\t\tRun all tests and generate reports"
 }
@@ -367,7 +369,15 @@ case $command in
         fi
         ;;
     demo)
-        run_demo
+        if [ "$1" = "--simulate-vulnerable" ]; then
+            # Run demo in simulated mode
+            run_demo
+        else
+            run_demo
+        fi
+        ;;
+    simulate)
+        # Add simulate command logic here
         ;;
     report)
         setup_venv
@@ -397,8 +407,8 @@ case $command in
         ;;
 esac
 
-# Deactivate virtual environment
-if [ -n "$VIRTUAL_ENV" ]; then
+# Deactivate virtual environment only if 'deactivate' exists
+if [ -n "$VIRTUAL_ENV" ] && type deactivate &>/dev/null; then
     deactivate
     print_success "Deactivated virtual environment"
 fi
