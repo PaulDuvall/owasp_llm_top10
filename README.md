@@ -29,9 +29,12 @@ Prompt injection attacks occur when malicious users craft inputs that manipulate
 ### Prerequisites
 
 - Python 3.11 or higher
-- (Optional for simulation) AWS CLI and OpenAI API key are **not required** if you use simulated mode (see below)
-- For full functionality: AWS CLI configured with appropriate permissions, and access to an OpenAI API key (stored in AWS Parameter Store)
 - GitHub account (for running GitHub Actions)
+- **To use a real LLM:**
+  - AWS CLI configured with appropriate permissions
+  - Access to an OpenAI API key (stored in AWS Parameter Store)
+- **To use simulated mode:**
+  - No AWS account or OpenAI key required
 
 ### Simulated Mode (No Cloud Required)
 
@@ -43,7 +46,7 @@ You can run both the demo and tests in simulated mode—**no AWS account or Open
 ./run.sh test --simulate-vulnerable     # Tests, no AWS/OpenAI needed
 ```
 
-### Full Setup (Cloud-Backed)
+### Full Setup (Cloud-Backed, Real LLM)
 
 If you want to test against a real LLM and use secure credential management, follow these steps:
 
@@ -72,7 +75,7 @@ If you want to test against a real LLM and use secure credential management, fol
 
 > **Note:**
 > - For full functionality with a real LLM, an AWS account is required to securely store your API keys and credentials via Parameter Store. For setup instructions, see Appendix or the docs.
-> - **However, you can run both the demo and tests in simulated mode without AWS or an OpenAI key** by using the `--simulate-vulnerable` flag.
+> - **However, you can run both the demo and tests in simulated mode without AWS or an OpenAI key** by using the `--simulate-vulnerable` flag. This allows you to explore all core detection and reporting features with zero cloud dependencies.
 
 ## Interactive Demo
 
