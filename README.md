@@ -29,93 +29,78 @@ Prompt injection attacks occur when malicious users craft inputs that manipulate
 ### Prerequisites
 
 - Python 3.11 or higher
-- AWS CLI configured with appropriate permissions
-- Access to an OpenAI API key (stored in AWS Parameter Store)
+- (Optional for simulation) AWS CLI and OpenAI API key are **not required** if you use simulated mode (see below)
+- For full functionality: AWS CLI configured with appropriate permissions, and access to an OpenAI API key (stored in AWS Parameter Store)
 - GitHub account (for running GitHub Actions)
 
-### Secure GitHub Token Management with AWS Parameter Store
+### Simulated Mode (No Cloud Required)
 
-For enhanced security, this project uses AWS Parameter Store to manage your GitHub Personal Access Token (PAT) for OIDC setup. This keeps your token out of shell history, process lists, and your codebase.
+You can run both the demo and tests in simulated mode—**no AWS account or OpenAI API key required**. This allows you to explore all detection and reporting features with zero cloud dependencies, perfect for demos, evaluation, or learning.
 
-#### 1. Store Your GitHub Token (REQUIRED FIRST STEP)
-Run the following command and enter your token when prompted:
-
+**To use simulated mode:**
 ```bash
-./run.sh set-github-token
-```
-This will securely store your GitHub token in AWS Parameter Store at `/owasp-llm-top10/GITHUB_TOKEN` as a SecureString.
-
-#### 2. Run the OIDC Setup Script
-After setting your token, run the OIDC setup script. The script will automatically retrieve your token from Parameter Store:
-
-```bash
-./scripts/setup_oidc.sh --region us-east-1 --github-org YOUR_ORG --repo-name YOUR_REPO
+./run.sh demo --simulate-vulnerable     # Demo, no AWS/OpenAI needed
+./run.sh test --simulate-vulnerable     # Tests, no AWS/OpenAI needed
 ```
 
-If the token is not found, the script will prompt you to set it using the above command.
+### Full Setup (Cloud-Backed)
 
-#### Why Parameter Store?
-- Keeps secrets out of shell/process history
-- Centralizes and secures credential management
-- Only users with AWS SSM permissions can access the token
-
-#### Alternate Ways to Provide the GitHub Token
-
-While the recommended approach is to store your GitHub token in AWS Parameter Store, the OIDC setup script also supports these methods:
-
-1. **Command-line argument:**
-   Pass your token directly:
-   ```bash
-   ./scripts/setup_oidc.sh --github-token YOUR_GITHUB_TOKEN
-   ```
-
-2. **Environment variable:**
-   Set `GITHUB_TOKEN` in your shell:
-   ```bash
-   export GITHUB_TOKEN=YOUR_GITHUB_TOKEN
-   ./scripts/setup_oidc.sh --region us-east-1 --github-org YOUR_ORG --repo-name YOUR_REPO
-   ```
-
-3. **AWS Parameter Store (default/fallback):**
-   If neither of the above is provided, the script will automatically retrieve the token from Parameter Store.
-
-**Order of precedence:**
-1. Command-line argument
-2. Environment variable
-3. Parameter Store
-
-Parameter Store is recommended for the best security and automation, but all three methods are supported for flexibility.
-
-### Local Setup
+If you want to test against a real LLM and use secure credential management, follow these steps:
 
 1. Clone this repository:
    ```bash
    git clone https://github.com/PaulDuvall/owasp_llm_top10.git
    cd owasp_llm_top10
    ```
-
 2. Run the setup script to create a virtual environment and install dependencies:
    ```bash
    ./run.sh setup
    ```
-
 3. Configure your LLM API credentials in AWS Parameter Store:
    ```bash
    ./run.sh params check
    ./run.sh params set
    ```
-
 4. Run the demo to see prompt injection detection in action:
    ```bash
    ./run.sh demo
    ```
-
 5. Run tests locally:
    ```bash
    ./run.sh test
    ```
 
-### GitHub Actions Setup
+> **Note:**
+> - For full functionality with a real LLM, an AWS account is required to securely store your API keys and credentials via Parameter Store. For setup instructions, see Appendix or the docs.
+> - **However, you can run both the demo and tests in simulated mode without AWS or an OpenAI key** by using the `--simulate-vulnerable` flag.
+
+## Interactive Demo
+
+The framework includes an interactive demo that demonstrates prompt injection detection:
+
+```bash
+./run.sh demo             # Real LLM (requires AWS/OpenAI)
+./run.sh demo --simulate-vulnerable  # Simulated mode (no AWS/OpenAI)
+```
+
+This demo:
+1. Sends a safe baseline prompt to the LLM (or simulates response)
+2. Sends malicious prompts attempting to extract system instructions
+3. Analyzes the response using pattern matching and behavioral analysis
+4. Provides a detailed report with confidence scores and mitigation recommendations
+
+## Running Tests
+
+You can run the full test suite:
+
+```bash
+./run.sh test             # Real LLM (requires AWS/OpenAI)
+./run.sh test --simulate-vulnerable  # Simulated mode (no AWS/OpenAI)
+```
+
+Simulated mode produces realistic, detailed output for demos and evaluation with no cloud dependencies.
+
+## GitHub Actions Setup
 
 1. Fork this repository to your GitHub account
 2. Add your AWS credentials as GitHub Secrets:
@@ -208,20 +193,6 @@ The framework uses several methods to detect successful prompt injections:
 2. **Behavioral Analysis**: Compares LLM behavior against expected responses
 3. **Confidence Scoring**: Calculates a confidence score based on multiple detection factors
 4. **Similarity Analysis**: Measures how much an attack response differs from a baseline response
-
-## Interactive Demo
-
-The framework includes an interactive demo that demonstrates prompt injection detection:
-
-```bash
-./run.sh demo
-```
-
-This demo:
-1. Sends a safe baseline prompt to the LLM
-2. Sends a malicious prompt attempting to extract system instructions
-3. Analyzes the response using pattern matching and behavioral analysis
-4. Provides a detailed report with confidence scores and mitigation recommendations
 
 ## Extending the Framework
 

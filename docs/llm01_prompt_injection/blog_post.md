@@ -87,7 +87,9 @@ To use the framework with a real LLM, you need an [OpenAI API key](https://platf
 
 Your key is stored securely and only needs to be entered once per environment setup.
 
-> **Note:** An AWS account is required to use this framework. AWS is used to securely store your API keys and credentials via Parameter Store. For setup instructions, see Appendix: Setting Up AWS Access.
+> **Note:**
+> - For full functionality with a real LLM, an AWS account is required to securely store your API keys and credentials via Parameter Store. For setup instructions, see Appendix: Setting Up AWS Access.
+> - **However, you can run both the demo and tests in simulated mode without AWS or an OpenAI key** by using the `--simulate-vulnerable` flag. This allows you to explore all core detection and reporting features with zero cloud dependencies.
 
 ### Running the Demo and Tests
 
@@ -250,3 +252,5 @@ aws sts get-caller-identity
 You should see your AWS account and user info.
 
 Once complete, you’ll be able to run the framework’s scripts and securely store/retrieve secrets via AWS Parameter Store.
+
+```
