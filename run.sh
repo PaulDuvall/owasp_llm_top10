@@ -365,13 +365,21 @@ case $command in
         check_required_parameters
         ;;
     test)
-        # Check parameters before running tests
-        check_required_parameters
-        setup_venv
-        if [ $# -eq 0 ]; then
-            run_tests
+        # Simulated mode for tests
+        if [ "$1" = "--simulate-vulnerable" ]; then
+            print_section "Running tests in simulated mode (no AWS or OpenAI key required)"
+            # Run the detailed simulated test output
+            python3 scripts/simulate_tests.py
+            print_success "Simulated tests completed successfully"
         else
-            run_specific_test "$1"
+            # Check parameters before running tests
+            check_required_parameters
+            setup_venv
+            if [ $# -eq 0 ]; then
+                run_tests
+            else
+                run_specific_test "$1"
+            fi
         fi
         ;;
     demo)
