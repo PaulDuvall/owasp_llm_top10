@@ -211,7 +211,7 @@ A number of open source tools aim to help assess prompt injection and related LL
 
 ## Appendix: Setting Up AWS Access
 
-To use this framework, you need AWS access for secure secret storage. Here’s how to set it up:
+To use this framework **with a real LLM**, you need AWS access for secure secret storage. Here’s how to set it up:
 
 1. **Create an AWS Account**
    - [Sign up for AWS](https://aws.amazon.com/) if you don’t have an account.
@@ -252,5 +252,3 @@ aws sts get-caller-identity
 You should see your AWS account and user info.
 
 Once complete, you’ll be able to run the framework’s scripts and securely store/retrieve secrets via AWS Parameter Store.
-
-```
