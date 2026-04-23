@@ -41,9 +41,3 @@ pytest
 
 See [WORKSHOP.md](WORKSHOP.md) for suggested 35-minute lab pairings
 (agent-loop lab: LLM01+LLM06; RAG lab: LLM02+LLM08) with runsheets.
-
-## Course
-
-These demos back the O'Reilly Live Training course *AI-Native DevSecOps:
-Shipping Secure AI-Generated Code Through a CI/CD Pipeline*. Instructor:
-Paul Duvall.
